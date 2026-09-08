@@ -125,12 +125,12 @@ def test_core_resolves_models_and_default_payloads():
     assert resolve_ocr_model("PP-OCRv5") is Model.PP_OCRV5
     assert resolve_ocr_model("PP-OCRv5-latin") is Model.PP_OCRV5_LATIN
     assert resolve_ocr_model("PP-OCRv6") is Model.PP_OCRV6
-    assert resolve_document_model("PaddleOCR-VL-1.6") is Model.PADDLE_OCR_VL_16
+    assert resolve_document_model("PaddleOCR-VL-1.8") is Model.PADDLE_OCR_VL_18
 
     assert default_payload(Model.PP_OCRV5) == OCROptions().to_payload()
     assert default_payload(Model.PP_OCRV5_LATIN) == OCROptions().to_payload()
     assert default_payload(Model.PP_OCRV6) == OCROptions().to_payload()
-    assert default_payload(Model.PADDLE_OCR_VL_16) == PaddleOCRVLOptions().to_payload()
+    assert default_payload(Model.PADDLE_OCR_VL_18) == PaddleOCRVLOptions().to_payload()
 
     with pytest.raises(InvalidRequestError):
         resolve_ocr_model("PP-StructureV3")
@@ -145,7 +145,7 @@ def test_core_selects_document_options_by_model():
         PPStructureV3Options,
     )
     assert isinstance(
-        resolve_document_options(Model.PADDLE_OCR_VL_16, None),
+        resolve_document_options(Model.PADDLE_OCR_VL_18, None),
         PaddleOCRVLOptions,
     )
 
@@ -153,7 +153,7 @@ def test_core_selects_document_options_by_model():
         resolve_document_options(Model.PP_STRUCTURE_V3, PaddleOCRVLOptions())
 
     with pytest.raises(InvalidRequestError):
-        resolve_document_options(Model.PADDLE_OCR_VL_16, PPStructureV3Options())
+        resolve_document_options(Model.PADDLE_OCR_VL_18, PPStructureV3Options())
 
 
 def test_core_validates_input_source_and_job_task():

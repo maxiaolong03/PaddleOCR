@@ -22,6 +22,7 @@ const (
 	PaddleOCRVL   = "PaddleOCR-VL"
 	PaddleOCRVL15 = "PaddleOCR-VL-1.5"
 	PaddleOCRVL16 = "PaddleOCR-VL-1.6"
+	PaddleOCRVL18 = "PaddleOCR-VL-1.8"
 )
 
 // IsOCRModel reports whether model is supported by OCR APIs.
@@ -32,7 +33,7 @@ func IsOCRModel(model string) bool {
 // IsDocumentParsingModel reports whether model is supported by document parsing APIs.
 func IsDocumentParsingModel(model string) bool {
 	switch model {
-	case PPStructureV3, PaddleOCRVL, PaddleOCRVL15, PaddleOCRVL16:
+	case PPStructureV3, PaddleOCRVL, PaddleOCRVL15, PaddleOCRVL16, PaddleOCRVL18:
 		return true
 	default:
 		return false
@@ -42,7 +43,7 @@ func IsDocumentParsingModel(model string) bool {
 // IsVLModel reports whether model is a PaddleOCR-VL family model.
 func IsVLModel(model string) bool {
 	switch model {
-	case PaddleOCRVL, PaddleOCRVL15, PaddleOCRVL16:
+	case PaddleOCRVL, PaddleOCRVL15, PaddleOCRVL16, PaddleOCRVL18:
 		return true
 	default:
 		return false

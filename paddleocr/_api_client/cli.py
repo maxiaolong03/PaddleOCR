@@ -253,7 +253,7 @@ def _execute_api(args):
             save_resources = client.save_ocr_result_resources
         else:
             if model is None:
-                model = Model.PADDLE_OCR_VL_16
+                model = Model.PADDLE_OCR_VL_18
             if is_vl_model(model):
                 options = PaddleOCRVLOptions(
                     use_doc_orientation_classify=args.use_doc_orientation_classify,

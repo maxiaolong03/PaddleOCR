@@ -22,8 +22,8 @@ from .base import PaddleXPipelineWrapper, PipelineCLISubcommandExecutor
 from .utils import create_config_from_structure
 
 
-_AVAILABLE_PIPELINE_VERSIONS = ["v1", "v1.5", "v1.6"]
-_DEFAULT_PIPELINE_VERSION = "v1.6"
+_AVAILABLE_PIPELINE_VERSIONS = ["v1", "v1.5", "v1.6", "v1.8"]
+_DEFAULT_PIPELINE_VERSION = "v1.8"
 _SUPPORTED_VL_BACKENDS = [
     "native",
     "vllm-server",
@@ -94,6 +94,8 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
             return "PaddleOCR-VL-1.5"
         elif self.pipeline_version == "v1.6":
             return "PaddleOCR-VL-1.6"
+        elif self.pipeline_version == "v1.8":
+            return "PaddleOCR-VL-1.8"
         else:
             raise AssertionError(f"Unknown pipeline version: {self.pipeline_version}")
 

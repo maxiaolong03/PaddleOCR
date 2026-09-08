@@ -68,7 +68,7 @@ export class PaddleOCRClient {
   }
 
   async submitDocumentParsing(req: DocParsingRequest, options?: { signal?: AbortSignal }): Promise<Job> {
-    const model = req.model ?? Model.PaddleOCRVL16;
+    const model = req.model ?? Model.PaddleOCRVL18;
     if (!isDocumentParsingModel(model)) {
       throw new InvalidRequestError(`Model ${model} is not a document parsing model.`);
     }
@@ -330,7 +330,7 @@ export class PaddleOCRClient {
     if (typeof job === "string") {
       return {
         jobId: job,
-        model: expectedTask === "ocr" ? Model.PPOCRv6 : Model.PaddleOCRVL16,
+        model: expectedTask === "ocr" ? Model.PPOCRv6 : Model.PaddleOCRVL18,
         task: expectedTask,
       };
     }

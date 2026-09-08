@@ -205,14 +205,14 @@ describe("PaddleOCRClient public contract", () => {
       fileUrl: "https://files.example.test/ocr.pdf",
     });
     const docJob = await client.submitDocumentParsing({
-      model: "PaddleOCR-VL-1.6",
+      model: "PaddleOCR-VL-1.8",
       fileUrl: "https://files.example.test/doc.pdf",
     });
 
     expect(ocrJob.model).toBe("PP-OCRv5");
-    expect(docJob.model).toBe("PaddleOCR-VL-1.6");
+    expect(docJob.model).toBe("PaddleOCR-VL-1.8");
     expect(JSON.parse(String(calls[0].init.body)).model).toBe("PP-OCRv5");
-    expect(JSON.parse(String(calls[1].init.body)).model).toBe("PaddleOCR-VL-1.6");
+    expect(JSON.parse(String(calls[1].init.body)).model).toBe("PaddleOCR-VL-1.8");
   });
 
   test("model helpers classify current OCR and document parsing models", async () => {
@@ -224,7 +224,7 @@ describe("PaddleOCRClient public contract", () => {
     expect(mod.isOCRModel(Model.PPStructureV3)).toBe(false);
     expect(mod.isOCRModel("future-unknown-model")).toBe(false);
     expect(mod.isDocumentParsingModel(Model.PaddleOCRVL)).toBe(true);
-    expect(mod.isDocumentParsingModel(Model.PaddleOCRVL16)).toBe(true);
+    expect(mod.isDocumentParsingModel(Model.PaddleOCRVL18)).toBe(true);
     expect(mod.isDocumentParsingModel(Model.PPOCRv5)).toBe(false);
   });
 
@@ -233,7 +233,7 @@ describe("PaddleOCRClient public contract", () => {
     const client = createClient(fetch);
 
     await client.submitDocumentParsing({
-      model: Model.PaddleOCRVL16,
+      model: Model.PaddleOCRVL18,
       fileUrl: "https://files.example.test/doc.pdf",
       options: {
         useOcrForImageBlock: true,
@@ -257,7 +257,7 @@ describe("PaddleOCRClient public contract", () => {
     });
   });
 
-  test("submitDocumentParsing defaults to PaddleOCR-VL-1.6", async () => {
+  test("submitDocumentParsing defaults to PaddleOCR-VL-1.8", async () => {
     const { fetch, calls } = captureFetch([jsonResponse({ data: { jobId: "job-doc" } })]);
     const client = createClient(fetch);
 
@@ -265,8 +265,8 @@ describe("PaddleOCRClient public contract", () => {
       fileUrl: "https://files.example.test/doc.pdf",
     });
 
-    expect(job.model).toBe(Model.PaddleOCRVL16);
-    expect(JSON.parse(String(calls[0].init.body)).model).toBe(Model.PaddleOCRVL16);
+    expect(job.model).toBe(Model.PaddleOCRVL18);
+    expect(JSON.parse(String(calls[0].init.body)).model).toBe(Model.PaddleOCRVL18);
   });
 
   test("submitOcr rejects non-OCR models before network calls", async () => {

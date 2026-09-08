@@ -72,7 +72,7 @@ func TestDocumentParsingOptionsIncludeCurrentAndFutureServiceParameters(t *testi
 	}
 
 	_, err = client.SubmitDocumentParsing(context.Background(), &DocParsingRequest{
-		Model:   PaddleOCRVL16,
+		Model:   PaddleOCRVL18,
 		FileURL: "https://example.test/doc.pdf",
 		Options: &PaddleOCRVLOptions{
 			UseOcrForImageBlock:  &trueValue,

@@ -28,6 +28,7 @@ class Model(str, Enum):
     PADDLE_OCR_VL = "PaddleOCR-VL"
     PADDLE_OCR_VL_15 = "PaddleOCR-VL-1.5"
     PADDLE_OCR_VL_16 = "PaddleOCR-VL-1.6"
+    PADDLE_OCR_VL_18 = "PaddleOCR-VL-1.8"
 
 
 _OCR_MODELS = frozenset({Model.PP_OCRV5, Model.PP_OCRV5_LATIN, Model.PP_OCRV6})
@@ -37,6 +38,7 @@ _DOCUMENT_PARSING_MODELS = frozenset(
         Model.PADDLE_OCR_VL,
         Model.PADDLE_OCR_VL_15,
         Model.PADDLE_OCR_VL_16,
+        Model.PADDLE_OCR_VL_18,
     }
 )
 _VL_MODELS = frozenset(
@@ -44,6 +46,7 @@ _VL_MODELS = frozenset(
         Model.PADDLE_OCR_VL,
         Model.PADDLE_OCR_VL_15,
         Model.PADDLE_OCR_VL_16,
+        Model.PADDLE_OCR_VL_18,
     }
 )
 

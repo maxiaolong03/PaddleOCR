@@ -101,7 +101,7 @@ class PaddleOCRClient:
 
     def parse_document(
         self,
-        model: Union[Model, str] = Model.PADDLE_OCR_VL_16,
+        model: Union[Model, str] = Model.PADDLE_OCR_VL_18,
         file_url: Optional[str] = None,
         file_path: Optional[str] = None,
         options: Optional[DocParsingOptions] = None,
@@ -138,7 +138,7 @@ class PaddleOCRClient:
 
     def submit_document_parsing(
         self,
-        model: Union[Model, str] = Model.PADDLE_OCR_VL_16,
+        model: Union[Model, str] = Model.PADDLE_OCR_VL_18,
         file_url: Optional[str] = None,
         file_path: Optional[str] = None,
         options: Optional[DocParsingOptions] = None,

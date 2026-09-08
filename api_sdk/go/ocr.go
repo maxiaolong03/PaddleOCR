@@ -62,7 +62,7 @@ func (c *Client) SubmitDocumentParsing(ctx context.Context, req *DocParsingReque
 	}
 	model := req.Model
 	if model == "" {
-		model = PaddleOCRVL16
+		model = PaddleOCRVL18
 	}
 	if !IsDocumentParsingModel(model) {
 		return nil, &InvalidRequestError{PaddleOCRAPIError{Message: "model is not a document parsing model: " + model}}

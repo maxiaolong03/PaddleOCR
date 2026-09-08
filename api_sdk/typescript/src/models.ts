@@ -20,6 +20,7 @@ export enum Model {
   PaddleOCRVL = "PaddleOCR-VL",
   PaddleOCRVL15 = "PaddleOCR-VL-1.5",
   PaddleOCRVL16 = "PaddleOCR-VL-1.6",
+  PaddleOCRVL18 = "PaddleOCR-VL-1.8",
 }
 
 const OCR_MODELS = new Set<string>([Model.PPOCRv5, Model.PPOCRv5Latin, Model.PPOCRv6]);
@@ -28,11 +29,13 @@ const DOCUMENT_PARSING_MODELS = new Set<string>([
   Model.PaddleOCRVL,
   Model.PaddleOCRVL15,
   Model.PaddleOCRVL16,
+  Model.PaddleOCRVL18,
 ]);
 const VL_MODELS = new Set<string>([
   Model.PaddleOCRVL,
   Model.PaddleOCRVL15,
   Model.PaddleOCRVL16,
+  Model.PaddleOCRVL18,
 ]);
 
 export function isOCRModel(

@@ -35,6 +35,7 @@ SUPPORTED_MODELS = frozenset(
         "PaddleOCR-VL",
         "PaddleOCR-VL-1.5",
         "PaddleOCR-VL-1.6",
+        "PaddleOCR-VL-1.8",
     }
 )
 
@@ -46,6 +47,7 @@ _MODEL_TOOLS: dict[str, str] = {
     "PaddleOCR-VL": "paddleocr_vl",
     "PaddleOCR-VL-1.5": "paddleocr_vl",
     "PaddleOCR-VL-1.6": "paddleocr_vl",
+    "PaddleOCR-VL-1.8": "paddleocr_vl",
 }
 
 
