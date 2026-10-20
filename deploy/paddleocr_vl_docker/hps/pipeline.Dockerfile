@@ -7,7 +7,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-ARG HPS_SDK_DIR=paddlex_hps_PaddleOCR-VL-1.6_sdk
+ARG HPS_SDK_DIR=paddlex_hps_PaddleOCR-VL-1.8_sdk
 COPY ${HPS_SDK_DIR}/server .
 
 ARG DEVICE_TYPE
