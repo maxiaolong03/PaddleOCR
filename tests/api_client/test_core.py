@@ -172,3 +172,22 @@ def test_core_validates_input_source_and_job_task():
 
     with pytest.raises(InvalidRequestError):
         job_id_for_task(job, "document_parsing")
+
+
+@pytest.mark.parametrize("enabled", [True, False])
+def test_paddleocr_vl_deformation_options_preserve_false_and_zero(enabled):
+    options = PaddleOCRVLOptions(
+        use_layout_deform=enabled,
+        layout_deform_conf_thresh=0.9,
+        layout_deform_min_roll=0.0,
+        layout_deform_min_shear=2.0,
+        layout_deform_min_keystone=3.0,
+    )
+    assert options.to_payload() == {
+        "useLayoutDeform": enabled,
+        "layoutDeformConfThresh": 0.9,
+        "layoutDeformMinRoll": 0.0,
+        "layoutDeformMinShear": 2.0,
+        "layoutDeformMinKeystone": 3.0,
+    }
+    assert not any("Deform" in key for key in PaddleOCRVLOptions().to_payload())

@@ -131,6 +131,11 @@ class PPStructureV3Options:
 
 @dataclass
 class PaddleOCRVLOptions:
+    use_layout_deform: Optional[bool] = None
+    layout_deform_conf_thresh: Optional[float] = None
+    layout_deform_min_roll: Optional[float] = None
+    layout_deform_min_shear: Optional[float] = None
+    layout_deform_min_keystone: Optional[float] = None
     use_doc_orientation_classify: Optional[bool] = None
     use_doc_unwarping: Optional[bool] = None
     use_layout_detection: Optional[bool] = None

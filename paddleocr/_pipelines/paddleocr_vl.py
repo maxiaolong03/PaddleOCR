@@ -65,6 +65,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
         merge_layout_blocks=None,
         markdown_ignore_labels=None,
         use_queues=None,
+        use_layout_deform=None,
+        layout_deform_conf_thresh=None,
+        layout_deform_min_roll=None,
+        layout_deform_min_shear=None,
+        layout_deform_min_keystone=None,
         **kwargs,
     ):
         if pipeline_version not in _AVAILABLE_PIPELINE_VERSIONS:
@@ -106,6 +111,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
         use_doc_orientation_classify=None,
         use_doc_unwarping=None,
         use_layout_detection=None,
+        use_layout_deform=None,
+        layout_deform_conf_thresh=None,
+        layout_deform_min_roll=None,
+        layout_deform_min_shear=None,
+        layout_deform_min_keystone=None,
         use_chart_recognition=None,
         use_seal_recognition=None,
         use_ocr_for_image_block=None,
@@ -133,6 +143,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
             use_doc_orientation_classify=use_doc_orientation_classify,
             use_doc_unwarping=use_doc_unwarping,
             use_layout_detection=use_layout_detection,
+            use_layout_deform=use_layout_deform,
+            layout_deform_conf_thresh=layout_deform_conf_thresh,
+            layout_deform_min_roll=layout_deform_min_roll,
+            layout_deform_min_shear=layout_deform_min_shear,
+            layout_deform_min_keystone=layout_deform_min_keystone,
             use_chart_recognition=use_chart_recognition,
             use_seal_recognition=use_seal_recognition,
             use_ocr_for_image_block=use_ocr_for_image_block,
@@ -163,6 +178,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
         use_doc_orientation_classify=None,
         use_doc_unwarping=None,
         use_layout_detection=None,
+        use_layout_deform=None,
+        layout_deform_conf_thresh=None,
+        layout_deform_min_roll=None,
+        layout_deform_min_shear=None,
+        layout_deform_min_keystone=None,
         use_chart_recognition=None,
         use_seal_recognition=None,
         use_ocr_for_image_block=None,
@@ -191,6 +211,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
                 use_doc_orientation_classify=use_doc_orientation_classify,
                 use_doc_unwarping=use_doc_unwarping,
                 use_layout_detection=use_layout_detection,
+                use_layout_deform=use_layout_deform,
+                layout_deform_conf_thresh=layout_deform_conf_thresh,
+                layout_deform_min_roll=layout_deform_min_roll,
+                layout_deform_min_shear=layout_deform_min_shear,
+                layout_deform_min_keystone=layout_deform_min_keystone,
                 use_chart_recognition=use_chart_recognition,
                 use_seal_recognition=use_seal_recognition,
                 use_ocr_for_image_block=use_ocr_for_image_block,
@@ -245,6 +270,11 @@ class PaddleOCRVL(PaddleXPipelineWrapper):
             "use_doc_preprocessor": self._params["use_doc_orientation_classify"]
             or self._params["use_doc_unwarping"],
             "use_layout_detection": self._params["use_layout_detection"],
+            "use_layout_deform": self._params["use_layout_deform"],
+            "layout_deform_conf_thresh": self._params["layout_deform_conf_thresh"],
+            "layout_deform_min_roll": self._params["layout_deform_min_roll"],
+            "layout_deform_min_shear": self._params["layout_deform_min_shear"],
+            "layout_deform_min_keystone": self._params["layout_deform_min_keystone"],
             "use_chart_recognition": self._params["use_chart_recognition"],
             "format_block_content": self._params["format_block_content"],
             "merge_layout_blocks": self._params["merge_layout_blocks"],
@@ -413,6 +443,37 @@ class PaddleOCRVLCLISubcommandExecutor(PipelineCLISubcommandExecutor):
             type=str2bool,
             help="Whether to use text image unwarping.",
         )
+        subparser.add_argument(
+            "--use_layout_deform",
+            type=str2bool,
+            default=None,
+            help="Whether to rectify layout crops using page deformation predictions.",
+        )
+        subparser.add_argument(
+            "--layout_deform_conf_thresh",
+            type=float,
+            default=None,
+            help="Minimum quadrant confidence for layout rectification.",
+        )
+        subparser.add_argument(
+            "--layout_deform_min_roll",
+            type=float,
+            default=None,
+            help="Minimum roll angle in degrees for layout rectification.",
+        )
+        subparser.add_argument(
+            "--layout_deform_min_shear",
+            type=float,
+            default=None,
+            help="Minimum shear angle in degrees for layout rectification.",
+        )
+        subparser.add_argument(
+            "--layout_deform_min_keystone",
+            type=float,
+            default=None,
+            help="Minimum keystone angle in degrees for layout rectification.",
+        )
+
         subparser.add_argument(
             "--use_layout_detection",
             type=str2bool,

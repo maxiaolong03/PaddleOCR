@@ -100,6 +100,11 @@ type PPStructureV3Options struct {
 }
 
 type PaddleOCRVLOptions struct {
+	UseLayoutDeform           *bool                  `json:"useLayoutDeform,omitempty"`
+	LayoutDeformConfThresh    *float64               `json:"layoutDeformConfThresh,omitempty"`
+	LayoutDeformMinRoll       *float64               `json:"layoutDeformMinRoll,omitempty"`
+	LayoutDeformMinShear      *float64               `json:"layoutDeformMinShear,omitempty"`
+	LayoutDeformMinKeystone   *float64               `json:"layoutDeformMinKeystone,omitempty"`
 	UseDocOrientationClassify *bool                  `json:"useDocOrientationClassify,omitempty"`
 	UseDocUnwarping           *bool                  `json:"useDocUnwarping,omitempty"`
 	UseLayoutDetection        *bool                  `json:"useLayoutDetection,omitempty"`

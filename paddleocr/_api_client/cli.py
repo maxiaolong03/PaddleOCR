@@ -160,6 +160,37 @@ def register_api_command(subparsers):
     )
     # --- Layout and feature toggles (doc_parsing only) ---
     subparser.add_argument(
+        "--use_layout_deform",
+        type=str2bool,
+        default=None,
+        help="Whether to rectify layout crops using page deformation predictions.",
+    )
+    subparser.add_argument(
+        "--layout_deform_conf_thresh",
+        type=float,
+        default=None,
+        help="Minimum quadrant confidence for layout rectification.",
+    )
+    subparser.add_argument(
+        "--layout_deform_min_roll",
+        type=float,
+        default=None,
+        help="Minimum roll angle in degrees for layout rectification.",
+    )
+    subparser.add_argument(
+        "--layout_deform_min_shear",
+        type=float,
+        default=None,
+        help="Minimum shear angle in degrees for layout rectification.",
+    )
+    subparser.add_argument(
+        "--layout_deform_min_keystone",
+        type=float,
+        default=None,
+        help="Minimum keystone angle in degrees for layout rectification.",
+    )
+
+    subparser.add_argument(
         "--use_layout_detection",
         type=str2bool,
         default=None,
@@ -256,6 +287,11 @@ def _execute_api(args):
                 model = Model.PADDLE_OCR_VL_18
             if is_vl_model(model):
                 options = PaddleOCRVLOptions(
+                    use_layout_deform=args.use_layout_deform,
+                    layout_deform_conf_thresh=args.layout_deform_conf_thresh,
+                    layout_deform_min_roll=args.layout_deform_min_roll,
+                    layout_deform_min_shear=args.layout_deform_min_shear,
+                    layout_deform_min_keystone=args.layout_deform_min_keystone,
                     use_doc_orientation_classify=args.use_doc_orientation_classify,
                     use_doc_unwarping=args.use_doc_unwarping,
                     use_chart_recognition=args.use_chart_recognition,

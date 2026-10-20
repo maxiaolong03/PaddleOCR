@@ -237,6 +237,11 @@ describe("PaddleOCRClient public contract", () => {
       fileUrl: "https://files.example.test/doc.pdf",
       options: {
         useOcrForImageBlock: true,
+        useLayoutDeform: false,
+        layoutDeformConfThresh: 0.9,
+        layoutDeformMinRoll: 0,
+        layoutDeformMinShear: 2,
+        layoutDeformMinKeystone: 3,
         formatBlockContent: true,
         markdownIgnoreLabels: ["image"],
         vlmExtraArgs: { temperature: 0.1 },
@@ -248,6 +253,11 @@ describe("PaddleOCRClient public contract", () => {
 
     expect(JSON.parse(String(calls[0].init.body)).optionalPayload).toEqual({
       useOcrForImageBlock: true,
+      useLayoutDeform: false,
+      layoutDeformConfThresh: 0.9,
+      layoutDeformMinRoll: 0,
+      layoutDeformMinShear: 2,
+      layoutDeformMinKeystone: 3,
       formatBlockContent: true,
       markdownIgnoreLabels: ["image"],
       vlmExtraArgs: { temperature: 0.1 },

@@ -102,6 +102,11 @@ export interface PPStructureV3Options {
 }
 
 export interface PaddleOCRVLOptions {
+  useLayoutDeform?: boolean;
+  layoutDeformConfThresh?: number;
+  layoutDeformMinRoll?: number;
+  layoutDeformMinShear?: number;
+  layoutDeformMinKeystone?: number;
   useDocOrientationClassify?: boolean;
   useDocUnwarping?: boolean;
   useLayoutDetection?: boolean;

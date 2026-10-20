@@ -16,6 +16,11 @@ from typing import Any
 
 
 PADDLEOCR_VL_RUNTIME_PARAMS: dict[str, type] = {
+    "use_layout_deform": bool,
+    "layout_deform_conf_thresh": float,
+    "layout_deform_min_roll": float,
+    "layout_deform_min_shear": float,
+    "layout_deform_min_keystone": float,
     "use_doc_orientation_classify": bool,
     "use_doc_unwarping": bool,
     "use_layout_detection": bool,

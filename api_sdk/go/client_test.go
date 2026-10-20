@@ -71,10 +71,16 @@ func TestDocumentParsingOptionsIncludeCurrentAndFutureServiceParameters(t *testi
 		t.Fatalf("NewClient() error = %v", err)
 	}
 
+	conf, roll, shear, keystone := 0.9, 0.0, 2.0, 3.0
 	_, err = client.SubmitDocumentParsing(context.Background(), &DocParsingRequest{
 		Model:   PaddleOCRVL18,
 		FileURL: "https://example.test/doc.pdf",
 		Options: &PaddleOCRVLOptions{
+			UseLayoutDeform:         &falseValue,
+			LayoutDeformConfThresh:  &conf,
+			LayoutDeformMinRoll:     &roll,
+			LayoutDeformMinShear:    &shear,
+			LayoutDeformMinKeystone: &keystone,
 			UseOcrForImageBlock:  &trueValue,
 			FormatBlockContent:   &trueValue,
 			MarkdownIgnoreLabels: []string{"image"},
@@ -88,6 +94,11 @@ func TestDocumentParsingOptionsIncludeCurrentAndFutureServiceParameters(t *testi
 		t.Fatalf("SubmitDocumentParsing() error = %v", err)
 	}
 
+	if got["useLayoutDeform"] != false || got["layoutDeformConfThresh"] != conf ||
+		got["layoutDeformMinRoll"] != roll || got["layoutDeformMinShear"] != shear ||
+		got["layoutDeformMinKeystone"] != keystone {
+		t.Fatalf("got deformation options %#v", got)
+	}
 	if got["useOcrForImageBlock"] != true || got["formatBlockContent"] != true {
 		t.Fatalf("got boolean options %#v", got)
 	}
